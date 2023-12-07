@@ -4,7 +4,8 @@
   "description": "Auth service for our application",
   "main": "src/index.ts",
   "scripts": {
-    "prettier": "prettier --write ./src/**/*.ts",
+    "prettier": "prettier --check ./src/**/*.ts",
+    "prettier:fix": "prettier --write ./src/**/*.ts",
     "lint": "eslint src/**/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon src/index.ts",
@@ -43,8 +44,8 @@
   },
   "lint-staged": {
     "*.ts": [
-      "eslint . --quiet --fix",
-      "prettier --write .",
+      "npm run prettier",
+      "num run lint",
       "git add"
     ]
   },
