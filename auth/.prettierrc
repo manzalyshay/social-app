@@ -3,10 +3,12 @@
   "tabWidth": 2,
   "useTabs": false,
   "semi": true,
-  "trailingComma": "none",
+  "trailingComma": "all",
   "overrides": [
     {
-      "files": "*.ts",
+      "files": [
+        "src/**/*.ts"
+      ],
       "options": {
         "parser": "typescript"
       }

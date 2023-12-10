@@ -15,7 +15,15 @@
   "plugins": [
     "@typescript-eslint"
   ],
+  "overrides": [
+    {
+      "files": [
+        "src/**/*.ts"
+      ]
+    }
+  ],
   "rules": {
+    "comma-dangle": "off",
     "quotes": [
       2,
       "double",
@@ -38,6 +46,7 @@
     "import/resolver": {
       "node": {
         "extensions": [
+          ".ts",
           ".js",
           ".jsx",
           ".ts",
