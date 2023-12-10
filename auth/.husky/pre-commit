@@ -1,4 +1,4 @@
 # ...
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
-cd ./auth && npm run prettier && npm run lint && git add .
+cd ./auth && npm run prettier:fix && npm run lint && git add .

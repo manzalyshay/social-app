@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
+    "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
       "*": [
@@ -15,7 +16,9 @@
     "skipLibCheck": true
   },
   "include": [
-    "src"
+    "src",
+    "node_modules/ts-jest/globals.d.ts",
+    "node_modules/ts-jest/globals.d.ts"
   ],
   "exclude": [
     "node_modules",
