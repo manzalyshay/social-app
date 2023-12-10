@@ -11,6 +11,7 @@ module.exports = {
   },
   rules: {
     quotes: ["error", "double", { avoidEscape: true, allowTemplateLiterals: true }],
+    "no-console": ["error"],
     "import/prefer-default-export": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
