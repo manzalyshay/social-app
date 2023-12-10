@@ -1,5 +1,5 @@
-import request from 'supertest';
-import app from '../../app';
+import request from "supertest";
+import app from "../../app";
 // tests
 
 it("should return 422 if the email is not valid", async () => {
