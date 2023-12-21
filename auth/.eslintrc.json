@@ -3,34 +3,32 @@
     "browser": true,
     "commonjs": true,
     "es2021": true,
-    "jest": true
+    "jest": true,
+    "node": true
   },
   "extends": [
-    "airbnb-base"
+    "airbnb-typescript/base",
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 12
+    "ecmaVersion": 12,
+    "project": [
+      "./tsconfig.json"
+    ],
+    "sourceType": "module"
   },
   "plugins": [
+    "import",
     "@typescript-eslint"
-  ],
-  "overrides": [
-    {
-      "files": [
-        "src/**/*.ts"
-      ]
-    }
   ],
   "rules": {
     "comma-dangle": "off",
-    "quotes": [
-      2,
-      "double",
-      {
-        "avoidEscape": true
-      }
+    "@typescript-eslint/quotes": [
+      "error",
+      "double"
     ],
+    // Change to double quotes
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -49,7 +47,6 @@
           ".ts",
           ".js",
           ".jsx",
-          ".ts",
           ".tsx"
         ]
       }

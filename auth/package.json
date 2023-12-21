@@ -7,7 +7,7 @@
     "prepare": "cd .. && husky install auth/.husky",
     "prettier": "prettier --check ./src/**/*.ts",
     "prettier:fix": "prettier --write ./src/**/*.ts",
-    "lint": "eslint src",
+    "lint": "eslint --ext .ts src",
     "test": "jest",
     "test:watch": "jest --watchAll --no-cache",
     "start:dev": "nodemon src/index.ts",

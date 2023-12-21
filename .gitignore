@@ -132,3 +132,5 @@ dist
 # ide specific
 .idea/
 
+node_modules
+package-lock.json
