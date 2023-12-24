@@ -1,5 +1,36 @@
 import request from "supertest";
 import app from "../../app";
+import { SIGNUP_ROUTE } from "../signup";
+
+/**
+ * Available methods in api/auth/signup:
+ * - POST
+ */
+describe("tests signup route method availability", () => {
+  let password = "",
+    email = "";
+  beforeAll(() => {
+    password = "passwordValid1";
+    email = "emailValid@valid.com";
+  });
+
+  it("should return 405 for non post requests", async () => {
+    await request(app).get(SIGNUP_ROUTE).expect(405);
+    await request(app).put(SIGNUP_ROUTE).expect(405);
+    await request(app).patch(SIGNUP_ROUTE).expect(405);
+    await request(app).delete(SIGNUP_ROUTE).expect(405);
+  });
+
+  it("should return 200 for post requests", async () => {
+    await request(app)
+      .post(SIGNUP_ROUTE)
+      .send({
+        email,
+        password,
+      })
+      .expect(200);
+  });
+});
 
 /**
  * Valid email conditions:
@@ -15,7 +46,7 @@ describe("test validity of email input", () => {
   });
   it("should return 422 if the email is not provided", async () => {
     await request(app)
-      .post("/api/auth/signup")
+      .post(SIGNUP_ROUTE)
       .send({
         password,
       })
@@ -23,10 +54,10 @@ describe("test validity of email input", () => {
   });
 
   it("should return 422 if the email is not valid", async () => {
-    await request(app).post("/api/auth/signup").send({}).expect(422);
+    await request(app).post(SIGNUP_ROUTE).send({}).expect(422);
 
     await request(app)
-      .post("/api/auth/signup")
+      .post(SIGNUP_ROUTE)
       .send({
         email: "invalid",
         password,
@@ -35,10 +66,10 @@ describe("test validity of email input", () => {
   });
 
   it("should return 200 if the email is  valid", async () => {
-    await request(app).post("/api/auth/signup").send({}).expect(422);
+    await request(app).post(SIGNUP_ROUTE).send({}).expect(422);
 
     await request(app)
-      .post("/api/auth/signup")
+      .post(SIGNUP_ROUTE)
       .send({
         email: "test@test.com",
         password,
@@ -65,7 +96,7 @@ describe("test validity of password input", () => {
   });
   it("should return 422 if the password is not provided", async () => {
     await request(app)
-      .post("/api/auth/signup")
+      .post(SIGNUP_ROUTE)
       .send({
         email,
       })
@@ -74,7 +105,7 @@ describe("test validity of password input", () => {
 
   it("should return 422 if the password contains less than 8 characters", async () => {
     await request(app)
-      .post("/api/auth/signup")
+      .post(SIGNUP_ROUTE)
       .send({
         email,
         password: "Valid12",
@@ -83,7 +114,7 @@ describe("test validity of password input", () => {
   });
   it("should return 422 if the password contains more than 32 characters", async () => {
     await request(app)
-      .post("/api/auth/signup")
+      .post(SIGNUP_ROUTE)
       .send({
         email,
         password: "Valid12Valid12Valid12Valid12Valid12Valid12Va",
@@ -92,7 +123,7 @@ describe("test validity of password input", () => {
   });
   it("should return 422 if the password doesn't contain 1 lowercase letter", async () => {
     await request(app)
-      .post("/api/auth/signup")
+      .post(SIGNUP_ROUTE)
       .send({
         email,
         password: "VALID12VALID12",
@@ -101,7 +132,7 @@ describe("test validity of password input", () => {
   });
   it("should return 422 if the password doesn't contain 1 uppercase letter", async () => {
     await request(app)
-      .post("/api/auth/signup")
+      .post(SIGNUP_ROUTE)
       .send({
         email,
         password: "valid12valid12",
@@ -110,7 +141,7 @@ describe("test validity of password input", () => {
   });
   it("should return 422 if the password doesn't contain a number", async () => {
     await request(app)
-      .post("/api/auth/signup")
+      .post(SIGNUP_ROUTE)
       .send({
         email,
         password: "Validvalidva",
@@ -119,7 +150,7 @@ describe("test validity of password input", () => {
   });
   it("should return 200 if the password is valid", async () => {
     await request(app)
-      .post("/api/auth/signup")
+      .post(SIGNUP_ROUTE)
       .send({
         email,
         password: "Valid12Valid12",
